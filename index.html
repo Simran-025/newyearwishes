@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy New Year 2025</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background-color: #2c3e50;
+      color: white;
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 4em;
+      margin: 20px;
+      font-weight: bold;
+      color: #f39c12;
+      text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    p {
+      font-size: 1.5em;
+      color: #ecf0f1;
+      margin-top: 20px;
+    }
+
+    .letter-button {
+      padding: 20px 40px;
+      background: #e74c3c;
+      color: white;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+      transition: background 0.3s ease;
+    }
+
+    .letter-button:hover {
+      background: #c0392b;
+    }
+
+    .confetti {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background-color: #f39c12;
+      opacity: 0.9;
+      animation: confettiFall 2s forwards;
+    }
+
+    @keyframes confettiFall {
+      0% {
+        transform: translateY(0) rotate(0deg);
+      }
+      100% {
+        transform: translateY(300px) rotate(360deg);
+      }
+    }
+
+    .copy-page {
+      display: none;
+      position: fixed;
+      top: 10%;
+      left: 10%;
+      width: 80%;
+      height: 80%;
+      background: rgba(0, 0, 0, 0.8);
+      border: 2px solid #f39c12;
+      padding: 20px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      overflow-y: auto;
+      z-index: 10;
+      color: #ecf0f1;
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    .note {
+      font-size: 1.2em;
+      white-space: pre-line;
+      margin: 20px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Page Header -->
+  <h1>🎉 Happy New Year 2025! 🎆</h1>
+  <p>Wishing you a year filled with joy, prosperity, and happiness. Let’s celebrate new beginnings!</p>
+
+  <!-- Button to open the New Year message -->
+  <button class="letter-button" onclick="openLetter()">Open My New Year Wishes</button>
+
+  <!-- Copy Page -->
+  <div id="copyPage" class="copy-page">
+    <h1 style="text-align: center; color: #f39c12;">Happy New Year 2025!</h1>
+    <p class="note" id="newYearNote"></p>
+  </div>
+
+  <script>
+    const message = `🎉 Wishing you a very Happy New Year 2025! 🎆
+May this year bring you endless joy, health, and success.
+May your dreams come true, and your life be filled with laughter and love.
+Cheers to new beginnings and unforgettable moments ahead! 🥂
+Happy New Year, and let's make 2025 the best year yet! ✨`;
+
+    function openLetter() {
+      document.querySelector('.letter-button').style.display = 'none';
+      const copyPage = document.getElementById('copyPage');
+      const note = document.getElementById('newYearNote');
+      copyPage.style.display = 'block';
+
+      let i = 0;
+      function typeLine() {
+        if (i < message.length) {
+          note.innerHTML += message.charAt(i);
+          i++;
+          setTimeout(typeLine, 50);
+        }
+      }
+      typeLine();
+
+      // Trigger confetti effect
+      setTimeout(() => {
+        createConfetti();
+      }, 1000); // Confetti appears after 1 second of opening the letter
+    }
+
+    function createConfetti() {
+      for (let i = 0; i < 100; i++) {
+        const confetti = document.createElement('div');
+        confetti.classList.add('confetti');
+        document.body.appendChild(confetti);
+        
+        const xPos = Math.random() * window.innerWidth;
+        const delay = Math.random() * 2;
+        const duration = Math.random() * 3 + 2;
+        
+        confetti.style.left = `${xPos}px`;
+        confetti.style.animationDelay = `${delay}s`;
+        confetti.style.animationDuration = `${duration}s`;
+      }
+    }
+  </script>
+</body>
+</html>
